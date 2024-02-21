@@ -1,0 +1,20 @@
+<h1 class="btn btn-warning"><%= @restaurant.name %></h1>
+<div class="card p-3">
+  <h2>Avis</h2>
+  <% @restaurant.reviews.each do |review| %>
+  <li>
+    <%= review.content %>
+  </li>
+  <% end %>
+</div>
+<div class="m-3">
+  <h4>Add review</h4>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :content %>
+    <%= f.input :rating %>
+    <%= f.submit "Submit review", class: "btn btn-primary" %>
+  <% end %>
+  <div class="float-right">
+    <%= link_to "All reviews", restaurant_reviews_path(@restaurant) %>
+  </div>
+</div>
